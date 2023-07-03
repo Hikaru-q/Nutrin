@@ -22,7 +22,8 @@
 - 自身の作ったレシピや献立を誰かに共有したり、記録したい時
 ​
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+- [ER図](https://drive.google.com/file/d/1wGRcxhfr4oquCjp5aGXwbmE1badG36vq/view?usp=sharing)
+- [テーブル提議書](https://docs.google.com/spreadsheets/d/1b9INjN3IWa7X_jUWD0BBdm9AfEekEZY5a58YuiZxCIg/edit?usp=sharing)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
