@@ -25,15 +25,18 @@ Rails.application.routes.draw do
   # 会員側のルーティング設定
   scope module: :public do
     root to: 'homes#top'
-    get 'homes/about'
+    get 'about',to: 'homes#about'
     resources :posts, only: [:index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     resources :customers, only:[:show, :edit, :update] do
+      member do
+        get :confirm
+        patch :withdraw 
+        get :followers, :followeds
+      end
       resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings', as: 'followings'
-      get 'followers' => 'relationships#followers', as: 'followers'
     end
     
   end  

@@ -1,38 +1,21 @@
-<div class=container>
-  <div class="ml-5 pl-5 mt-2 mb-2">
-  <h2>管理者ログイン</h2>
-  <%= form_with model: resource, url: new_admin_session_path, id: 'new_session_public', class: 'new_session_public' do |f| %>
-    <style>table,td {width: 70%;}</style>
-    <div class="ml-5">
-      <table>
-        <tr>
-          <td>メールアドレス</td>
-          <td>
-            <div class="field">
-              <% f.label :email %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size:60 %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>パスワード</td>
-          <td>
-            <div class="field">
-              <% f.label :password %>
-              <%= f.password_field :password, autocomplete: "current-password", size:60 %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-          <div class="actions text-center">
-          <%= f.submit "ログイン" %>
-          </div>
-          </td>
-        </tr>
-      </table>
+<div class= 'container mt-4'>
+  <div class='col-sm-4 mx-auto'>
+    <h2 class="text-center">管理者ログイン</h2>
+
+    <%= form_with model: resource, url: new_admin_session_path, id: 'new_session_public', class: 'new_session_public' do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <div class="field pt-2">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "sample@example.com" %>
     </div>
-  <% end %>
+    <div class="field pt-2">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+    </div>
+    <div class="actions d-flex justify-content-center">
+      <%= f.submit "ログイン", :class => "btn btn-primary mt-4" %>
+    </div>
+    <% end %>
   </div>
 </div>
