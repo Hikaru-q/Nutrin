@@ -4,6 +4,7 @@ class Public::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
+    @posts = @customer.posts
   end
   
   def edit
@@ -12,7 +13,7 @@ class Public::CustomersController < ApplicationController
   
   def update
     @customer = Customer.find(params[:id])
-    if @end_user.update(end_user_params)
+    if @customer.update(customer_params)
       redirect_to customer_path(@customer)
       flash[:notice] = "更新が完了しました"
     else
@@ -47,7 +48,7 @@ class Public::CustomersController < ApplicationController
   def ensure_correct_user
     customer = Customer.find(params[:id])
     unless customer.id == current_customer.id
-      redirect_to root_path
+      redirect_to customer_path(current_customer)
     end
   end
    
