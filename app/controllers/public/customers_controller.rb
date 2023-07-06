@@ -17,7 +17,7 @@ class Public::CustomersController < ApplicationController
       redirect_to customer_path(@customer)
       flash[:notice] = "更新が完了しました"
     else
-      flash[:notice] = "ユーザー情報を更新できませんでした"
+      flash[:alert] = "ユーザー情報を更新できませんでした"
       render :edit
     end
   end
