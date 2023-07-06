@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2 class="text-center">本当に退会しますか？</h2>
+  <h2 class="text-center"><strong>本当に退会しますか？</strong></h2>
   <div class="row justify-content-center">
     <div class="col-sm-8 text-center">
       <p>
@@ -7,8 +7,8 @@
         これまでの投稿が閲覧できなくなります。<br>
         退会する場合は、「退会する」をクリックしてください。
       </p>
-      <%= link_to "退会しない", confirm_customers_path, :class => "btn btn-primary ms-3" %>
-      <%= link_to "退会する", withdraw_customers_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
+      <%= link_to "退会しない", customer_path(current_customer), :class => "btn btn-outline-secondary ms-3" %>
+      <%= link_to "退会する", withdraw_customer_path, method: :patch, :class => "btn btn-outline-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
     </div>
   </div>
 </div>

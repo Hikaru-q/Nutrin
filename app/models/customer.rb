@@ -12,11 +12,11 @@ class Customer < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  
-  has_many :followings, through: :relationships, source: :followed
-  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  has_many :following_customers, through: :followers, source: :followed
+  has_many :follower_customers, through: :followeds, source: :follower
 
   validates :name, :email, presence: true
   validates :introduction, length: { maximum: 200 }
@@ -31,15 +31,15 @@ class Customer < ApplicationRecord
   
   # フォローしたときの処理
   def follow(customer_id)
-    relationships.create(followed_id: customer_id)
+    followers.create(followed_id: customer_id)
   end
   # フォローを外すときの処理
   def unfollow(customer_id)
-    relationships.find_by(followed_id: customer_id).destroy
+    followers.find_by(followed_id: customer_id).destroy
   end
   # フォローしているか判定
   def following?(customer)
-    followings.include?(customer)
+    following_customers.include?(customer)
   end
   
   
