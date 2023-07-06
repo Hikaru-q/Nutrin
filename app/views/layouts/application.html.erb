@@ -14,7 +14,15 @@
     <header class="shadow-sm">
       <%= render 'layouts/header' %>
     </header>
-    <%= yield %>
+    <main class="mb-auto">
+      <% if flash[:notice] %>
+        <p class="alert alert-primary"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="alert alert-danger"><%= flash.now[:alert] %></p>
+      <% end %>
+      <%= yield %>
+    </main>
     <footer class="pt-3 pb-2">
       <%= render 'layouts/footer' %>
     </footer>
