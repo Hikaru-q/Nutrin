@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <% if @customer.following_customers.present? %>
+        <h5><strong>フォロー中</strong></h5>
+        <table class ="table">
+          <% @customer.following_customers.each do |customer| %>  
+          <tr align="center">
+            <td><%= image_tag customer.get_profile_image(50, 50), class:"rounded-circle"; %></td>
+            <td><%= link_to customer.name, customer_path(customer), class: "text-black-50" %></td>
+            <td>
+              <%= link_to followeds_customer_path(customer), class: "text-black-50" do %>
+                <h6><strong><%= customer.followers.count %></strong> フォロー</h6>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to followers_customer_path(customer), class: "text-black-50" do %>
+                <h6><strong><%= customer.followeds.count %></strong> フォロワー</h6>
+              <% end %>
+            </td>
+            <% if current_customer != customer %>
+              <% if current_customer.following?(customer)%>
+                <td><%= link_to "フォロー中", customer_relationships_path(customer.id), method: :delete, class: "btn btn-outline-primary" %></td>
+              <% else %>
+                <td><%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class:"btn btn-outline-success" %></td>
+              <% end %>
+            <% end %>
+          <% end %>
+          </tr>
+        </table>
+      <% else %>
+        <h5><strong>フォローしているユーザーはいません</strong></h5>
+      <% end %>
+    </div>
+  </div>
+</div>
