@@ -1,18 +1,36 @@
-<div class="container py-5">
+<div class="container py-4">
   <div class="row">
     <div class="col-md-7 order-md-2">
       <h5><%= @customer.name %></h5>
       <p><%= @customer.introduction %></p>
     </div>
     <div class="col-md-3 order-md-1">
-      <%= image_tag @customer.get_profile_image(120,120), class:"rounded-circle";  %>
+      <%= image_tag @customer.get_profile_image(120,120), class:"rounded-circle"; %>
     </div>
   </div>
-  <% if @customer.id == current_customer.id %>
+  
   <div class="row py-3">
     <div class="col-md-7 order-md-2">
-      <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class:"text-dark" %></p>
+      <%= link_to followeds_customer_path(@customer), class: "text-black-50" do %>
+      <h6><strong><%= @customer.followers.count %></strong> フォロー</h6>
+      <% end %>
+      <%= link_to followers_customer_path(@customer), class: "text-black-50" do %>
+      <h6><strong><%= @customer.followeds.count %></strong> フォロワー</h6>
+      <% end %>
     </div>
+    <% if @customer.id == current_customer.id %>
+    <div class="col-md-3 order-md-1">
+      <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class:"btn btn-outline-secondary" %></p>
+    </div>
+    <% end %>
+    <% if current_customer != @customer %>
+    <div class="col-md-3 order-md-1">
+      <% if current_customer.following?(@customer)%>
+      <%= link_to "フォロー中", customer_relationships_path(@customer.id), method: :delete, class: "btn btn-outline-primary" %>
+      <% else %>
+      <%= link_to "フォローする",customer_relationships_path(@customer.id), method: :post, class: "btn btn-outline-success" %>
+      <% end %>
+    </div>
+    <% end %>
   </div>  
-  <% end %>
 </div>

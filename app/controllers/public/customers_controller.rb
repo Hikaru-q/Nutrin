@@ -1,10 +1,12 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :confirm]
   
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
+    @following_customers = @customer.following_customers
+    @follower_customers = @customer.follower_customers
   end
   
   def edit
@@ -37,6 +39,16 @@ class Public::CustomersController < ApplicationController
       flash[:notice] = "退会処理が完了しました"
       redirect_to root_path
     end
+  end
+  
+  def followeds
+    @customer = Customer.find(params[:id])
+    @customers = @customer.following_customers
+  end
+
+  def followers
+    @customer = Customer.find(params[:id])
+    @customers = @customer.follower_customers
   end
   
    private
