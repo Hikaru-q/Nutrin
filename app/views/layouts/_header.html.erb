@@ -8,14 +8,20 @@
     <ul class="navbar-nav ml-auto">
       <!--管理者のログイン時-->
       <% if admin_signed_in? %>
-      <li>
-        <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link mt-3" do %>
-        <i class="fas fa-sign-out-alt"></i>
-          ログアウト
-        <% end %>
-      </li>
+        <li>
+          <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link mt-3" do %>
+          <i class="fas fa-sign-out-alt"></i>
+            ログアウト
+          <% end %>
+        </li>
       <!--ユーザーのログイン時-->
       <% elsif customer_signed_in? %>
+        <li>
+          <%= link_to new_post_path, class: "nav-link mt-3" do %>
+          <i class="fas fa-pencil"></i>
+            投稿する
+          <% end %>
+        </li>
         <li>
           <%= link_to customer_path(current_customer), class: "nav-link mt-3" do %>
           <i class="fas fa-user-cog"></i>

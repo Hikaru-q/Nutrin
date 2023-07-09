@@ -11,12 +11,14 @@
   
   <div class="row py-3">
     <div class="col-md-7 order-md-2">
-      <%= link_to followeds_customer_path(@customer), class: "text-black-50" do %>
-      <h6><strong><%= @customer.followers.count %></strong> フォロー</h6>
-      <% end %>
-      <%= link_to followers_customer_path(@customer), class: "text-black-50" do %>
-      <h6><strong><%= @customer.followeds.count %></strong> フォロワー</h6>
-      <% end %>
+      <h6><%= link_to followeds_customer_path(@customer), class: "text-black-50" do %>
+        <strong><%= @customer.followers.count %></strong> フォロー
+        <% end %>
+      </h6>
+      <h6><%= link_to followers_customer_path(@customer), class: "text-black-50" do %>
+        <strong><%= @customer.followeds.count %></strong> フォロワー
+        <% end %>
+      </h6>  
     </div>
     <% if @customer.id == current_customer.id %>
     <div class="col-md-3 order-md-1">
@@ -32,5 +34,20 @@
       <% end %>
     </div>
     <% end %>
-  </div>  
+  </div>
+</div>
+
+<hr>
+
+<div class="container marketing">
+  <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-lg-4">
+      <p><%= image_tag post.get_image(80,80), class:"rounded-circle"; %></p>
+      <h5><%= post.post_name %></h5>
+      <p class="small"><i class="fas fa-user"></i> <%= @customer.name %></p>
+      <p><%= link_to "詳細を見る", post_path(post), class:"btn btn-outline-secondary" %></p>
+    </div>
+  <% end %>
+  </div>
 </div>
