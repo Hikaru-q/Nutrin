@@ -1,0 +1,40 @@
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-7 order-md-2">
+      <h5><%= @customer.name %></h5>
+      <p><%= @customer.introduction %></p>
+    </div>
+    <div class="col-md-3 order-md-1">
+      <%= image_tag @customer.get_profile_image(120,120), class:"rounded-circle"; %>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-md-7 order-md-2">
+      <h6>
+        <strong><%= @customer.followers.count %></strong> フォロー
+      </h6>
+      <h6>
+        <strong><%= @customer.followeds.count %></strong> フォロワー
+      </h6>  
+    </div>
+    <div class="col-md-3 order-md-1">
+      <p><%= link_to "プロフィール編集", edit_admin_customer_path(@customer), class:"btn btn-outline-secondary" %></p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container marketing">
+  <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-lg-4">
+      <p><%= image_tag post.get_image(80,80), class:"rounded-circle"; %></p>
+      <h5><%= post.post_name %></h5>
+      <p class="small"><i class="fas fa-user"></i> <%= @customer.name %></p>
+      <p><%= link_to "詳細を見る", admin_post_path(post), class:"btn btn-outline-secondary" %></p>
+    </div>
+  <% end %>
+  </div>
+</div>
