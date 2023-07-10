@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <h4><strong>レシピ編集</strong></h4>
+      <%= form_with model: @post, url:admin_post_path, metod: :patch, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :image, "料理画像" %>
+        <%= f.file_field :image, class: "form-control-file image", accept: 'image/*' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :post_name, "料理名" %>
+        <%= f.text_field :post_name, class: "form-control post_name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, "料理説明" %>
+        <%= f.text_area :description, class: "form-control :description" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :material, "材料" %>
+        <%= f.text_area :material, class: "form-control :material" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :recipe, "作り方" %>
+        <%= f.text_area :recipe, class: "form-control :recipe" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :nutrition, "栄養価" %>
+        <%= f.text_field :nutrition, class: "form-control nutrition" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "投稿する", class: 'btn btn-outline-secondary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

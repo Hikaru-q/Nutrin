@@ -17,9 +17,13 @@ class Admin::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    redirect_to admin_customer_path
-    flash[:notice] = "編集に成功しました"
+    if @customer.update(customer_params)
+      redirect_to admin_customer_path
+      flash[:notice] = "更新が完了しました"
+    else
+      flash[:alert] = "ユーザー情報を更新できませんでした"
+      render :edit
+    end
   end
 
    private

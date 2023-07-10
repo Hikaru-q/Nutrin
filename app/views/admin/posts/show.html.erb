@@ -1,0 +1,24 @@
+<div class="container py-4">
+  <div class="row">
+    <div class="col-3">
+      <p><%= link_to "投稿を編集する", edit_admin_post_path(@post), class:"btn btn-outline-secondary" %></p>
+    </div>
+    <div class="col-3">
+      <p><%= link_to "投稿を削除する", admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか？' }, class:"btn btn-outline-danger" %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-md-5 mt-3 ml-3'>
+      <%= image_tag @post.get_image(400,400), class: "shadow p-3 mb-5 bg-white rounded", style: "margin: auto;" %>
+    </div>
+    <div class= "col-md-6 mt-3">
+      <div class = "item_cd shadow p-3 mb-5 bg-white rounded", style: "margin: auto;" >
+        <h4><strong><%= @post.post_name %></strong></h4>
+        <p><%= @post.description %></p></br>
+        <p><strong>材料： </strong><%= @post.material %></p></br>
+        <p><strong>作り方： </strong><%= @post.recipe %></p></br>
+        <p><strong>栄養価： </strong><%= @post.nutrition %></p>
+      </div>
+    </div>
+  </div>
+</div>
