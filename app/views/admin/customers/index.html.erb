@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <h5><strong>ユーザー一覧</strong></h5>
+      <table class ="table">
+        <tr align="center">
+          <td>ユーザーID</td>
+          <td></td>
+          <td>ユーザー名</td>
+          <td>メールアドレス</td>
+          <td>ステータス</td>
+        </tr>
+        <% @customers.each do |customer| %>
+        <tr align="center">
+          <td><%= customer.id %></td>
+          <td><%= image_tag customer.get_profile_image(50, 50), class:"rounded-circle"; %></td>
+          <td><%= link_to customer.name, admin_customer_path(customer), class: "text-black-50" %></td>
+          <td><%= customer.email %></td>
+          <td>
+            <% if customer.is_deleted == "exist" %>
+              <p style = "color: #4ec51e;">有効</p>
+            <% else %>
+              <p style = "color: #ff3838;">退会</p>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
