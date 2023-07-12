@@ -1,0 +1,11 @@
+<%= form_with(model:[post, post_comment], remote: true, local: false) do |f| %>
+<form class="row g-3">
+  <div class="form-group">
+    <%= f.text_area :comment, placeholder: "コメントする", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "送信", class: 'btn btn-outline-secondary' %>
+  </div>
+</form>
+<% end %>
+

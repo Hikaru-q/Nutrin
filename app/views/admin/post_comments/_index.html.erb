@@ -1,0 +1,18 @@
+<table class ="table">
+  <tbody>
+    <% post.post_comments.each do |post_comment| %>
+    <tr>
+      <td width = "18%">
+        <%= link_to admin_customer_path(post_comment.customer) do %>
+          <%= image_tag post_comment.customer.get_profile_image(36,36), class:"rounded-circle"; %><br>
+          <p class="small text-black-50"><%= post_comment.customer.name %></p>
+        <% end %>
+      </td>
+      <td width = "69%"><%= post_comment.comment %></td>
+      <td>
+        <%= link_to "削除", admin_post_post_comment_path(post, post_comment), method: :delete, remote: true, class: "btn btn-outline-danger btn-sm" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
