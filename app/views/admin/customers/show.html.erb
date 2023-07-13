@@ -31,8 +31,9 @@
   <% @posts.each do |post| %>
     <div class="col-lg-4">
       <p><%= image_tag post.get_image(80,80), class:"rounded-circle"; %></p>
-      <h5><%= post.post_name %></h5>
-      <p class="small"><i class="fas fa-user"></i> <%= @customer.name %></p>
+      <h5><strong><%= post.post_name %></strong></h5>
+      <p class="small text-black-50"><i class="fas fa-user"></i> <%= @customer.name %></p>
+      <p class="small text-black-50"><i class="fas fa-heart"></i> <%= post.favorites.count %></p>
       <p><%= link_to "詳細を見る", admin_post_path(post), class:"btn btn-outline-secondary" %></p>
     </div>
   <% end %>
