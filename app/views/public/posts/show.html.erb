@@ -12,6 +12,9 @@
         <strong><i class="far fa-comment"></i> <span id="comment_count"><%= @post.post_comments.count %></span></strong>
       </p>
     </div>
+    <div class="col" id="favorite_buttons_<%= @post.id %>">
+      <%= render "public/favorites/btn", post: @post %>
+    </div>
     <% if @post.customer == current_customer %>
     <div class="col">
       <p><%= link_to "投稿を編集する", edit_post_path(@post), class:"btn btn-outline-secondary btn-sm" %></p>
