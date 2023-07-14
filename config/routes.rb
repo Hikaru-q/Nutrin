@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
     end
+    resources :notifications, only: [:index, :destroy]
     get "search" => "searches#search"
     
   end  

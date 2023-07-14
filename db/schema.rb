@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_05_064520) do
+ActiveRecord::Schema.define(version: 2023_07_14_130954) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 2023_07_05_064520) do
     t.index ["post_id"], name: "index_favorites_on_post_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "subject_type"
+    t.integer "subject_id"
+    t.integer "customer_id"
+    t.integer "action_type", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_notifications_on_customer_id"
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "post_id", null: false
@@ -122,6 +134,7 @@ ActiveRecord::Schema.define(version: 2023_07_05_064520) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "customers"
   add_foreign_key "favorites", "posts"
+  add_foreign_key "notifications", "customers"
   add_foreign_key "post_comments", "customers"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "posts", "customers"
