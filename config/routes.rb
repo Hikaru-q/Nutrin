@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+  
   # 会員側のルーティング設定
   scope module: :public do
     root to: 'homes#top'

@@ -21,6 +21,17 @@ class Customer < ApplicationRecord
   validates :name, :email, presence: true
   validates :introduction, length: { maximum: 200 }
   
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |customer|
+      customer.name = 'ゲストユーザー'
+      customer.password = SecureRandom.urlsafe_base64
+    end
+  end
+  
+  def guest_user?
+    email == 'guest@example.com'
+  end
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

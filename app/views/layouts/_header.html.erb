@@ -69,6 +69,12 @@
             ログイン
           <% end %>
         </li>
+        <li>
+          <%= link_to customers_guest_sign_in_path, class: "nav-link mt-3", method: :post  do %>
+          <i class="fa-solid fa-users"></i>
+            ゲストログイン
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>  
