@@ -17,6 +17,8 @@ class Customer < ApplicationRecord
 
   has_many :following_customers, through: :followers, source: :followed
   has_many :follower_customers, through: :followeds, source: :follower
+  
+  has_many :notifications, dependent: :destroy
 
   validates :name, :email, presence: true
   validates :introduction, length: { maximum: 200 }

@@ -16,68 +16,83 @@
       <% end %>
     </div>
     <% end %>
-    <ul class="navbar-nav ml-auto">
-      <!--管理者のログイン時-->
-      <% if admin_signed_in? %>
-        <li>
-          <%= link_to admin_posts_path, class: "nav-link mt-3" do %>
-          <i class="fas fa-coffee"></i>
-            投稿一覧
-          <% end %>
-        </li>
-        <li>
-          <%= link_to admin_customers_path, class: "nav-link mt-3" do %>
-          <i class="fas fa-user-friends"></i>
-            ユーザ一覧
-          <% end %>
-        </li>
-        <li>
-          <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link mt-3" do %>
-          <i class="fas fa-sign-out-alt"></i>
-            ログアウト
-          <% end %>
-        </li>
-      <!--ユーザーのログイン時-->
-      <% elsif customer_signed_in? %>
-        <li>
-          <%= link_to new_post_path, class: "nav-link mt-3" do %>
-          <i class="fas fa-pencil"></i>
-            投稿する
-          <% end %>
-        </li>
-        <li>
-          <%= link_to customer_path(current_customer), class: "nav-link mt-3" do %>
-          <i class="fas fa-user-cog"></i>
-            マイページ
-          <% end %>
-        </li>
-        <li>
-          <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link mt-3" do %>
-          <i class="fas fa-sign-out-alt"></i>
-            ログアウト
-          <% end %>
-        </li>
-      <!--ログイン前画面-->
-      <% else %>
-        <li>
-          <%= link_to new_customer_registration_path, class: "nav-link mt-3" do %>
-          <i class="fas fa-user-edit"></i>
-            新規登録
-          <% end %>
-        </li>
-        <li>
-          <%= link_to new_customer_session_path, class: "nav-link mt-3" do %>
-          <i class="fas fa-sign-in-alt"></i>
-            ログイン
-          <% end %>
-        </li>
-        <li>
-          <%= link_to customers_guest_sign_in_path, class: "nav-link mt-3", method: :post  do %>
-          <i class="fa-solid fa-users"></i>
-            ゲストログイン
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <!--管理者のログイン時-->
+        <% if admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to admin_posts_path, class: "nav-link mt-3" do %>
+            <i class="fas fa-coffee"></i>
+              投稿一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_customers_path, class: "nav-link mt-3" do %>
+            <i class="fas fa-user-friends"></i>
+              ユーザ一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link mt-3" do %>
+            <i class="fas fa-sign-out-alt"></i>
+              ログアウト
+            <% end %>
+          </li>
+        <!--ユーザーのログイン時-->
+        <% elsif customer_signed_in? %>
+          <li class="nav-item">
+            <%= link_to notifications_path, class: "nav-link mt-3" do %>
+            <% if current_customer && current_customer.notifications.where(checked: false).exists? %>
+            <i class="fa-sharp fa-solid fa-bell fa-beat" style="color: #f2ee7d;"></i>
+            <% else %>
+            <i class="fa-sharp fa-solid fa-bell"></i>
+            <% end %>
+              通知
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_post_path, class: "nav-link mt-3" do %>
+            <i class="fas fa-pencil"></i>
+              投稿する
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to customer_path(current_customer), class: "nav-link mt-3" do %>
+            <i class="fas fa-user-cog"></i>
+              マイページ
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link mt-3" do %>
+            <i class="fas fa-sign-out-alt"></i>
+              ログアウト
+            <% end %>
+          </li>
+        <!--ログイン前画面-->
+        <% else %>
+          <li class="nav-item">
+            <%= link_to new_customer_registration_path, class: "nav-link mt-3" do %>
+            <i class="fas fa-user-edit"></i>
+              新規登録
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_customer_session_path, class: "nav-link mt-3" do %>
+            <i class="fas fa-sign-in-alt"></i>
+              ログイン
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to customers_guest_sign_in_path, class: "nav-link mt-3", method: :post  do %>
+            <i class="fa-solid fa-users"></i>
+              ゲストログイン
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div> 
   </div>  
 </nav>
