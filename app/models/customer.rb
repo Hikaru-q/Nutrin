@@ -42,5 +42,8 @@ class Customer < ApplicationRecord
     following_customers.include?(customer)
   end
   
+  def self.ransackable_attributes(auth_object = nil)
+    [ "name"]
+  end
   
 end

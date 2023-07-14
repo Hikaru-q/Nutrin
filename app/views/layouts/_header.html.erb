@@ -5,6 +5,15 @@
           <%= image_tag 'Nutrin.png', size: '150x70' %>
       <% end %>
     </div>
+    <!-- 検索機能 -->
+    <div class="row">
+      <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :q, required: true, class: "form-control d-inline-block w-auto", type: "search", placeholder: "検索", aria_label: "検索" %>
+        <button class="btn btn-outline-success" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      <% end %>
+    </div>
     <ul class="navbar-nav ml-auto">
       <!--管理者のログイン時-->
       <% if admin_signed_in? %>
