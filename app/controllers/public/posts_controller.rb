@@ -6,6 +6,10 @@ class Public::PostsController < ApplicationController
     @post = Post.new
   end
   
+  def index
+    @posts = Post.where(customer_id: [current_customer.id, *current_customer.following_customer_ids])
+  end
+  
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id

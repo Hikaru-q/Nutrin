@@ -2,7 +2,7 @@
   <div class="container">
     <div class="navbar navbar-brand">
       <%= link_to root_path do %>
-          <%= image_tag 'Nutrin.png', size: '150x70' %>
+          <%= image_tag 'Nutrin.png', size: '90x45' %>
       <% end %>
     </div>
     <% if customer_signed_in? %>
@@ -24,19 +24,19 @@
         <!--管理者のログイン時-->
         <% if admin_signed_in? %>
           <li class="nav-item">
-            <%= link_to admin_posts_path, class: "nav-link mt-3" do %>
+            <%= link_to admin_posts_path, class: "nav-link mt-3 small" do %>
             <i class="fas fa-coffee"></i>
               投稿一覧
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to admin_customers_path, class: "nav-link mt-3" do %>
+            <%= link_to admin_customers_path, class: "nav-link mt-3 small" do %>
             <i class="fas fa-user-friends"></i>
               ユーザ一覧
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link mt-3" do %>
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link mt-3 small" do %>
             <i class="fas fa-sign-out-alt"></i>
               ログアウト
             <% end %>
@@ -44,7 +44,13 @@
         <!--ユーザーのログイン時-->
         <% elsif customer_signed_in? %>
           <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link mt-3" do %>
+            <%= link_to posts_path, class: "nav-link mt-3 small" do %>
+            <i class="fa-solid fa-house-chimney"></i>
+              タイムライン
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to notifications_path, class: "nav-link mt-3 small" do %>
             <% if current_customer && current_customer.notifications.where(checked: false).exists? %>
             <i class="fa-sharp fa-solid fa-bell fa-beat" style="color: #f2ee7d;"></i>
             <% else %>
@@ -54,19 +60,19 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_post_path, class: "nav-link mt-3" do %>
+            <%= link_to new_post_path, class: "nav-link mt-3 small" do %>
             <i class="fas fa-pencil"></i>
               投稿する
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to customer_path(current_customer), class: "nav-link mt-3" do %>
+            <%= link_to customer_path(current_customer), class: "nav-link mt-3 small" do %>
             <i class="fas fa-user-cog"></i>
               マイページ
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link mt-3" do %>
+            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link mt-3 small" do %>
             <i class="fas fa-sign-out-alt"></i>
               ログアウト
             <% end %>
@@ -74,19 +80,19 @@
         <!--ログイン前画面-->
         <% else %>
           <li class="nav-item">
-            <%= link_to new_customer_registration_path, class: "nav-link mt-3" do %>
+            <%= link_to new_customer_registration_path, class: "nav-link mt-3 small" do %>
             <i class="fas fa-user-edit"></i>
               新規登録
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_customer_session_path, class: "nav-link mt-3" do %>
+            <%= link_to new_customer_session_path, class: "nav-link mt-3 small" do %>
             <i class="fas fa-sign-in-alt"></i>
               ログイン
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to customers_guest_sign_in_path, class: "nav-link mt-3", method: :post  do %>
+            <%= link_to customers_guest_sign_in_path, class: "nav-link mt-3 small", method: :post  do %>
             <i class="fa-solid fa-users"></i>
               ゲストログイン
             <% end %>

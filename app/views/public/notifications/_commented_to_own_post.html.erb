@@ -1,5 +1,5 @@
 <%= link_to transition_path(notification) do %>
-  <div>
+  <div class="small">
     <%= image_tag notification.subject.customer.get_profile_image(30, 30), class: "rounded-circle" %>
     <%= link_to notification.subject.customer.name, customer_path(notification.subject.customer) %>
     があなたの
