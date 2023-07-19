@@ -40,22 +40,22 @@
 <div class="container marketing">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <%= link_to customer_path(@customer), class: "nav-link active text-black-50" do %>
+      <%= link_to customer_path(@customer), class: "nav-link text-black-50" do %>
         投稿
       <% end %>
     </li>
     <li class="nav-item">
-      <%= link_to favorites_customer_path(@customer), class: "nav-link text-black-50" do %>
+      <%= link_to favorites_customer_path(@customer), class: "nav-link active text-black-50" do %>
         お気に入り
       <% end %>
     </li>
   </ul>
   <div class="row py-4">
-  <% @posts.each do |post| %>
+  <% @like_posts.each do |post| %>
     <div class="col-lg-4">
       <p><%= image_tag post.get_image(80,80), class:"rounded-circle"; %></p>
       <h5><strong><%= post.post_name %></strong></h5>
-      <p class="small text-black-50"><i class="fas fa-user"></i> <%= @customer.name %></p>
+      <p class="small text-black-50"><i class="fas fa-user"></i> <%= post.customer.name %></p>
       <p class="small text-black-50"><i class="fas fa-heart"></i> <%= post.favorites.count %></p>
       <p><%= link_to "詳細を見る", post_path(post), class:"btn btn-outline-secondary" %></p>
     </div>

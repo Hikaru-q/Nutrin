@@ -39,6 +39,7 @@ Rails.application.routes.draw do
         get :confirm
         patch :withdraw 
         get :followers, :followeds
+        get :favorites
       end
       resource :relationships, only: [:create, :destroy]
     end
