@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 2023_07_14_130954) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_favorites_on_customer_id"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2023_07_14_130954) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "subject_type"
-    t.integer "subject_id"
-    t.integer "customer_id"
+    t.bigint "subject_id"
+    t.bigint "customer_id", null: false
     t.integer "action_type", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 2023_07_14_130954) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "post_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2023_07_14_130954) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "post_name", null: false
     t.text "description", null: false
     t.text "material", null: false
