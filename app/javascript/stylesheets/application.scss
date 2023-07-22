@@ -1,0 +1,23 @@
+@use '~bootstrap/scss/bootstrap';
+
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+Rounded+1c:wght@300;400;500&display=swap');
+
+@import './layouts/footer';
+
+.marketing .col-lg-4 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+body {
+  font-family: 'Kosugi Maru', sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}

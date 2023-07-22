@@ -1,0 +1,10 @@
+<%= link_to transition_path(notification) do %>
+  <div class="small">
+    <%= image_tag notification.subject.customer.get_profile_image(30, 30), class: "rounded-circle" %>
+    <%= link_to notification.subject.customer.name, customer_path(notification.subject.customer) %>
+    があなたの
+    <%= link_to '投稿', post_path(notification.subject.post) %>
+    にいいねしました
+    <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
+  </div>
+<% end %>

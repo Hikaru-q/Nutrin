@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <h5><strong>投稿一覧</strong></h5>
+    </div>
+  </div>
+</div>
+
+<div class="container marketing mt-4">
+  <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-lg-4">
+      <p><%= image_tag post.get_image(80,80), class:"rounded-circle"; %></p>
+      <h5><strong><%= post.post_name %></strong></h5>
+      <p class="small text-black-50"><i class="fas fa-user"></i> <%= post.customer.name %></p>
+      <p class="small text-black-50"><i class="fas fa-heart"></i> <%= post.favorites.count %></p>
+      <p><%= link_to "詳細を見る", admin_post_path(post), class:"btn btn-outline-secondary" %></p>
+    </div>
+  <% end %>
+  </div>
+</div>
+

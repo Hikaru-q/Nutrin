@@ -1,0 +1,8 @@
+<%= link_to transition_path(notification) do %>
+  <div class="small">
+    <%= image_tag notification.subject.follower.get_profile_image(36, 36), class: "rounded-circle" %>
+    <%= link_to notification.subject.follower.name, customer_path(notification.subject.follower) %>
+    があなたをフォローしました
+    <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
+  </div>
+<% end %>

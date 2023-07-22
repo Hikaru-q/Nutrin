@@ -1,0 +1,44 @@
+<div class="container py-4">
+  <div class="row">
+    <div class="col">
+      <p class="small">
+        <%= link_to admin_customer_path(@post.customer.id), class: "text-black-50" do %>
+        <strong><i class="fas fa-user"></i> <%= @post.customer.name %></strong>
+        <% end %>
+      </p>
+    </div>
+    <div class="col">
+      <p class="small text-black-50">
+        <strong><i class="far fa-comment"></i> <span id="comment_count"><%= @post.post_comments.count %></span></strong>
+      </p>
+    </div>
+    <div class="col">
+      <p class="small text-black-50"><i class="fas fa-heart"></i> <%= @post.favorites.count %></p>
+    </div>
+    <div class="col">
+      <p><%= link_to "投稿を編集する", edit_admin_post_path(@post), class:"btn btn-outline-secondary btn-sm" %></p>
+    </div>
+    <div class="col">
+      <p><%= link_to "投稿を削除する", admin_post_path(@post), method: :delete, data: { confirm: '投稿を削除しますか？' }, class:"btn btn-outline-danger btn-sm" %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-md-5 mt-3 ml-3'>
+      <%= image_tag @post.get_image(400,400), class: "shadow p-3 mb-5 bg-white rounded", style: "margin: auto;" %>
+    </div>
+    <div class= "col-md-6 mt-3">
+      <div class = "item_cd shadow p-3 mb-5 bg-white rounded", style: "margin: auto;" >
+        <h4><strong><%= @post.post_name %></strong></h4>
+        <p><%= @post.description %></p></br>
+        <p><strong>材料</strong></p><p><%= @post.material %></p></br>
+        <p><strong>作り方</strong></p><p><%= @post.recipe %></p></br>
+        <p><strong>栄養価</strong></p><p><%= @post.nutrition %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container py-4">
+  <div class="row" id="admin-post-comments">
+    <%= render "admin/post_comments/index", post: @post, post_comment: @post_comment %>
+  </div>
+</div>

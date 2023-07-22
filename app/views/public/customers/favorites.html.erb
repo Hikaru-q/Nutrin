@@ -1,0 +1,64 @@
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-7 order-md-2">
+      <h5><%= @customer.name %></h5>
+      <p><%= @customer.introduction %></p>
+    </div>
+    <div class="col-md-3 order-md-1">
+      <%= image_tag @customer.get_profile_image(120,120), class:"rounded-circle"; %>
+    </div>
+  </div>
+  
+  <div class="row py-3">
+    <div class="col-md-7 order-md-2">
+      <h6><%= link_to followeds_customer_path(@customer), class: "text-black-50" do %>
+        <strong><%= @customer.followers.count %></strong> フォロー
+        <% end %>
+      </h6>
+      <h6><%= link_to followers_customer_path(@customer), class: "text-black-50" do %>
+        <strong><%= @customer.followeds.count %></strong> フォロワー
+        <% end %>
+      </h6>  
+    </div>
+    <% if @customer.id == current_customer.id %>
+    <div class="col-md-3 order-md-1">
+      <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class:"btn btn-outline-secondary" %></p>
+    </div>
+    <% end %>
+    <% if current_customer != @customer %>
+    <div class="col-md-3 order-md-1">
+      <% if current_customer.following?(@customer)%>
+      <%= link_to "フォロー中", customer_relationships_path(@customer.id), method: :delete, class: "btn btn-outline-primary" %>
+      <% else %>
+      <%= link_to "フォローする",customer_relationships_path(@customer.id), method: :post, class: "btn btn-outline-success" %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container marketing">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to customer_path(@customer), class: "nav-link text-black-50" do %>
+        投稿
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to favorites_customer_path(@customer), class: "nav-link active text-black-50" do %>
+        お気に入り
+      <% end %>
+    </li>
+  </ul>
+  <div class="row py-4">
+  <% @like_posts.each do |post| %>
+    <div class="col-lg-4">
+      <p><%= image_tag post.get_image(80,80), class:"rounded-circle"; %></p>
+      <h5><strong><%= post.post_name %></strong></h5>
+      <p class="small text-black-50"><i class="fas fa-user"></i> <%= post.customer.name %></p>
+      <p class="small text-black-50"><i class="fas fa-heart"></i> <%= post.favorites.count %></p>
+      <p><%= link_to "詳細を見る", post_path(post), class:"btn btn-outline-secondary" %></p>
+    </div>
+  <% end %>
+  </div>
+</div>

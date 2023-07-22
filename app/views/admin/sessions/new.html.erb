@@ -1,0 +1,21 @@
+<div class= 'container mt-4'>
+  <div class='col-sm-4 mx-auto'>
+    <h2 class="text-center"><strong>管理者ログイン</strong></h2>
+
+    <%= form_with model: resource, url: new_admin_session_path, id: 'new_session_public', class: 'new_session_public' do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <div class="field pt-2">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "sample@example.com" %>
+    </div>
+    <div class="field pt-2">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+    </div>
+    <div class="actions d-flex justify-content-center">
+      <%= f.submit "ログイン", :class => "btn btn-outline-secondary mt-4" %>
+    </div>
+    <% end %>
+  </div>
+</div>
