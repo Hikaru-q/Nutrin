@@ -1,8 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
     <div class="navbar navbar-brand">
-      <%= link_to root_path do %>
+      <% if admin_signed_in? %>
+        <%= link_to admin_posts_path do %>
           <%= image_tag 'Nutrin.png', size: '90x45' %>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+          <%= image_tag 'Nutrin.png', size: '90x45' %>
+        <% end %>
       <% end %>
     </div>
     <% if customer_signed_in? %>

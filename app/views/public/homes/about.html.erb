@@ -1,0 +1,62 @@
+<div class="container marketing mt-4">
+  
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2>自身のアイデアを共有しよう</h2>
+      <h4 class="lead">
+        </br>
+        <strong>Nutrin</strong> ではあなたの献立・レシピを共有、記録できるサービスです。</br>
+        あなたのアイデアを共有し、日々の生活に役立てましょう。
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <%= image_tag 'deskwork_date_man_simple.png', size: '300x200' %>
+    </div>
+  </div>
+  
+  <hr class="featurette-divider">
+  
+  <div class="row featurette">
+    <div class="col-md-5">
+      <%= image_tag 'likey_color.png', size: '300x200' %>
+    </div>
+    <div class="col-md-7">
+      <h2>他のユーザーと交流しよう</h2>
+      <h4 class="lead">
+        </br>
+        お気に入りの投稿にいいねやコメントをして、他のユーザーと交流することができます。</br>
+        気になったユーザーがいれば、フォローをして投稿をチェックしてみましょう。
+      </h4>
+    </div>
+  </div>
+  
+  <hr class="featurette-divider">
+  
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2>新しいレシピに挑戦してみよう</h2>
+      <h4 class="lead">
+        </br>
+        <strong>Nutrin</strong> で得たアイデアから新しいレシピに挑戦してみたり、</br>
+        他のユーザーのレシピをアレンジして、自身のレシピの幅を広げていきましょう。
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <%= image_tag 'valentine_cooking_color.png', size: '300x200' %>
+    </div>
+  </div>
+  
+  <hr class="featurette-divider">
+  
+  <div class="row justify-content-center">
+    <div class="d-flex mt-4 mb-4">
+      <% if current_customer %>
+        <p><%= link_to '投稿一覧', root_path, class: 'btn btn-outline-secondary' %></p>
+        <p><%= link_to 'マイページ', customer_path(current_customer), class: 'btn btn-outline-secondary' %></p>
+      <% else %>
+        <p><%= link_to '新規登録', new_customer_registration_path, class: 'btn btn-outline-secondary' %></p>
+        <p><%= link_to 'ログイン', new_customer_session_path, class: 'btn btn-outline-secondary' %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
