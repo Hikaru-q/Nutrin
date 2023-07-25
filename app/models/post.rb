@@ -14,6 +14,9 @@ class Post < ApplicationRecord
   validates :nutrition, presence: true
   validates :image, presence: true
   
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  
   def favorited_by?(customer)
     favorites.where(customer_id: customer.id).exists?
   end
