@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.where(customer_id: [current_customer.id, *current_customer.following_customer_ids])
+    @posts = Post.where(customer_id: [current_customer.id, *current_customer.following_customer_ids]).order(created_at: :desc)
   end
   
   def create
