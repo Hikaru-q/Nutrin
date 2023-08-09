@@ -22,14 +22,14 @@
             <td><%= image_tag customer.get_profile_image(50, 50), class:"rounded-circle"; %></td>
             <td><%= link_to customer.name, admin_customer_path(customer), class: "text-black-50" %></td>
             <td>
-              
+              <%= link_to followeds_admin_customer_path(customer), class: "text-black-50" do %>
                 <h6><strong><%= customer.followers.count %></strong> フォロー</h6>
-              
+              <% end %>
             </td>
             <td>
-              
+              <%= link_to followers_admin_customer_path(customer), class: "text-black-50" do %>
                 <h6><strong><%= customer.followeds.count %></strong> フォロワー</h6>
-              
+              <% end %>
             </td>
             
           <% end %>

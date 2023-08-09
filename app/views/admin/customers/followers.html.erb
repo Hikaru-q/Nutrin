@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <% if @customer.follower_customers.present? %>
+        <h5><strong>フォロワー</strong></h5>
+        <table class ="table">
+          <% @customer.follower_customers.each do |customer| %>  
+          <tr align="center">
+            <td><%= image_tag customer.get_profile_image(50, 50), class:"rounded-circle"; %></td>
+            <td><%= link_to customer.name, admin_customer_path(customer), class: "text-black-50" %></td>
+            <td>
+              <%= link_to followeds_admin_customer_path(customer), class: "text-black-50" do %>
+                <h6><strong><%= customer.followers.count %></strong> フォロー</h6>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to followers_admin_customer_path(customer), class: "text-black-50" do %>
+                <h6><strong><%= customer.followeds.count %></strong> フォロワー</h6>
+              <% end %>
+            </td>
+          <% end %>
+          </tr>
+        </table>
+      <% else %>
+        <h5><strong>フォローされているユーザーはいません</strong></h5>
+      <% end %>
+    </div>
+  </div>
+</div>
