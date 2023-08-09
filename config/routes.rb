@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
     end
+    get "search" => "searches#search"
   end
   
   # 顧客用
