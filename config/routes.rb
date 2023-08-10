@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   namespace :admin do
     root to: 'homes#top'
-    resources :customers, only:[:index, :show, :edit, :update]
+    resources :customers, only:[:index, :show, :edit, :update] do
+      member do
+        get :followers, :followeds
+      end
+    end
     resources :posts, only: [:index, :show, :edit, :create, :destroy, :update] do
       resources :post_comments, only: [:create, :destroy]
     end
+    get "search" => "searches#search"
   end
   
   # 顧客用

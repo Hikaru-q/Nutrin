@@ -22,6 +22,17 @@
       <% end %>
     </div>
     <% end %>
+    <% if admin_signed_in? %>
+    <!-- 検索機能 -->
+    <div class="row">
+      <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :q, required: true, class: "form-control d-inline-block w-auto", type: "search", placeholder: "検索", aria_label: "検索" %>
+        <button class="btn btn-outline-success" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      <% end %>
+    </div>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
