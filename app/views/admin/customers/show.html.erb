@@ -11,11 +11,13 @@
   
   <div class="row py-3">
     <div class="col-md-7 order-md-2">
-      <h6>
+      <h6><%= link_to followeds_admin_customer_path(@customer), class: "text-black-50" do %>
         <strong><%= @customer.followers.count %></strong> フォロー
+        <% end %>
       </h6>
-      <h6>
+      <h6><%= link_to followers_admin_customer_path(@customer), class: "text-black-50" do %>
         <strong><%= @customer.followeds.count %></strong> フォロワー
+        <% end %>
       </h6>  
     </div>
     <div class="col-md-3 order-md-1">

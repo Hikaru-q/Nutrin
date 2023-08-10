@@ -27,6 +27,16 @@ class Admin::CustomersController < ApplicationController
       render :edit
     end
   end
+  
+  def followeds
+    @customer = Customer.find(params[:id])
+    @customers = @customer.following_customers
+  end
+  
+  def followers
+    @customer = Customer.find(params[:id])
+    @customers = @customer.follower_customers
+  end
 
    private
 
