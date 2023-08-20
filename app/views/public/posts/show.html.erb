@@ -12,6 +12,11 @@
         <strong><i class="far fa-comment"></i> <span id="comment_count"><%= @post.post_comments.count %></span></strong>
       </p>
     </div>
+    <div class="col">
+      <p class="small text-black-50">
+        <strong><i class="fa-regular fa-eye"></i> <span id="comment_count"><%= @post.view_counts.count %></span></strong>
+      </p>
+    </div>
     <div class="col" id="favorite_buttons_<%= @post.id %>">
       <%= render "public/favorites/btn", post: @post %>
     </div>
