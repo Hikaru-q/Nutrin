@@ -25,6 +25,10 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @post_detail = Post.find(params[:id])
+    unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(customer_id: current_customer.id, post_id: @post.id)
+      current_customer.view_counts.create(post_id: @post.id)
+    end
   end
   
   def edit
